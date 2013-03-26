@@ -22,6 +22,9 @@ SRC = main.cc \
 EXT = camera.c \
 	sonar.c
 
+# OS type
+OSTYPE := $(shell uname)
+
 # Object files
 OBJECTS = $(patsubst %.cc,obj/%.o,$(SRC)) $(EXTERNAL)
 EXTERNAL = $(patsubst %.c,externalObj/%.o,$(EXT))
@@ -36,7 +39,7 @@ EXTFLAGS = -c -g -Wall
 
 # OS specific flags
 OSFLAGS = -lopenal
-ifeq "$(OSTYPE)" "darwin"
+ifeq "$(OSTYPE)" "Darwin"
 OSFLAGS = -framework OpenAL
 endif
 
